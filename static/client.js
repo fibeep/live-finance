@@ -1,1 +1,3 @@
 //init
+
+var empty = " ‎"

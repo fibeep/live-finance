@@ -12,51 +12,59 @@
         <h1>Tick-tack-io</h1>
 
         <input id="gameId" placeholder="gameID"/>
+        <hr />
+        <input id="xType" name="moveType" type="radio" value="X"/>
+        <label for='xType'>Play as X</label>
+
+        <br/>
+        <input id="oType" name="moveType" type="radio" value="O"/>
+        <label for='oType'>Play as O</label>
         <button onclick="joinGame(document.getElementById('gameId').value)">Join/Create Game</button>
+        <br/>
         <div class="row row-cols-1 row-cols-md-3 g-1">
-            <div class="col">
+            <div class="col" onclick="makeMove(0)">
                 <div  class="card container mx-auto text-center">
-                        <p id="1" style="font-size: 100px;">‎‎‏‏‎ ‎</p>
+                        <p id="0" style="font-size: 100px;">‎‎‏‏‎ ‎</p>
                 </div>
               </div>
-            <div class="col">
+            <div class="col" onclick="makeMove(1)">
                 <div class="card container mx-auto text-center">
-                        <p id="2" style="font-size: 100px;">‏‏‎ ‎</p>
+                        <p id="1" style="font-size: 100px;">‏‏‎ ‎</p>
                 </div>
               </div>
-            <div class="col">
+            <div class="col" onclick="makeMove(2)">
                 <div class="card container mx-auto text-center">
-                        <p id="3" style="font-size: 100px;">‏‏‎ ‎‎</p>
+                        <p id="2" style="font-size: 100px;">‏‏‎ ‎‎</p>
                 </div>
               </div>
-            <div class="col">
+            <div class="col"onclick="makeMove(3)">
                 <div class="card container mx-auto text-center">
-                        <p id="4" style="font-size: 100px;"> ‏‏‏‏‎ ‎</p>
+                        <p id="3" style="font-size: 100px;"> ‏‏‏‏‎ ‎</p>
                 </div>
               </div>
-            <div class="col">
+            <div class="col" onclick="makeMove(4)">
+                <div class="card container mx-auto text-center">
+                        <p id="4" style="font-size: 100px;">‏‏‎ ‎‎</p>
+                </div>
+              </div>
+              <div class="col" onclick="makeMove(5)">
                 <div class="card container mx-auto text-center">
                         <p id="5" style="font-size: 100px;">‏‏‎ ‎‎</p>
                 </div>
               </div>
-              <div class="col">
+              <div class="col" onclick="makeMove(6)">
                 <div class="card container mx-auto text-center">
-                        <p id="6" style="font-size: 100px;">‏‏‎ ‎‎</p>
+                        <p id="6" style="font-size: 100px;">‏‏‎ ‎‏‏‎ ‎</p>
                 </div>
               </div>
-              <div class="col">
+              <div class="col" onclick="makeMove(7)">
                 <div class="card container mx-auto text-center">
-                        <p id="7" style="font-size: 100px;">‏‏‎ ‎‏‏‎ ‎</p>
+                        <p id="7" style="font-size: 100px;">‏‏‎ ‎‎</p>
                 </div>
               </div>
-              <div class="col">
+              <div class="col" onclick="makeMove(8)">
                 <div class="card container mx-auto text-center">
-                        <p id="8" style="font-size: 100px;">‏‏‎ ‎‎</p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card container mx-auto text-center">
-                        <p id="9" style="font-size: 100px;">‏‏‎ ‎‎‎</p>
+                        <p id="8" style="font-size: 100px;">‏‏‎ ‎‎‎</p>
                 </div>
               </div>
           </div>

@@ -1,3 +1,8 @@
-//init
+var socket = io();
 
-var empty = " ‎"
+console.log("Hola")
+
+function joinGame(gameId){
+    socket.emit('joinGame',gameId)
+
+}

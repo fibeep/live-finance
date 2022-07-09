@@ -1,5 +1,6 @@
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tik-Tack-io</title>
@@ -9,6 +10,9 @@
     <body>
 
         <h1>Tick-tack-io</h1>
+
+        <input id="gameId" placeholder="gameID"/>
+        <button onclick="joinGame(document.getElementById('gameId').value)">Join/Create Game</button>
         <div class="row row-cols-1 row-cols-md-3 g-1">
             <div class="col">
                 <div  class="card container mx-auto text-center">
@@ -60,4 +64,7 @@
 
 
     </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  
 </html>

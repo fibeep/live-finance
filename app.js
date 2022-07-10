@@ -51,43 +51,66 @@ function checkIfWon(board, moveType){
 }
 
 io.on('connection', (socket) => {
+  var thisPersonMove
     function repeatChecking(gameId, oldValue) { 
       var temp1 = []
-                    for(var i =0;i<games[gameId].boxes.length;i++){
-                      temp1.push(games[gameId].boxes[i])
-                    }
+      for(var i =0;i<games[gameId].boxes.length;i++){
+        temp1.push(games[gameId].boxes[i])
+      }
       oldValue=temp1 
         if(oldValue) {    
-            setInterval(() => {     
-                if(games[gameId].boxes !== oldValue) {  
-                    console.log("GAME HAS BEEN UPDATED",games[gameId].boxes)    
-                    io.emit('gameUpdate', games[gameId]);  
-                    var temp = []
-                    for(var i =0;i<games[gameId].boxes.length;i++){
-                        temp.push(games[gameId].boxes[i])
-                    }
-                    oldValue=temp
+          var myInterval = setInterval(() => {    
+            if(games[gameId]){
+              if(games[gameId].over == true && thisPersonMove != games[gameId].lastMove){
+                console.log("THEY LOST")
 
-                }else{
-                    console.log("No update",games[gameId].boxes == oldValue, games[gameId].boxes , oldValue)
-                }    
-            }, 3000);  
+                socket.emit('gameUpdate', { game :games[gameId],gameId}); 
+                socket.emit('Lost');  
+
+                delete games[gameId]
+                clearInterval(myInterval)
+
+
+
+              }else{
+                if(games[gameId] && games[gameId].boxes !== oldValue) {  
+                  var temp = []
+                  var gameOver = true
+                  for(var i =0;i<games[gameId].boxes.length;i++){
+                      temp.push(games[gameId].boxes[i])
+                      if(games[gameId].boxes[i]){
+                        gameOver = false
+                      }
+                  }
+                  oldValue=temp
+                  io.emit('gameUpdate', {game :games[gameId], gameId : gameId});  
+
+          
+
+              }   
+            }
+              
+              }else{
+                clearInterval(myInterval)
+              }
+                
+            }, 1000);  
         }}
     console.log('a user connected');
 
     socket.on('getGame', (gameId) => {
-        io.emit('gameUpdate', games[gameId]);   
+        socket.emit('gameUpdate', {game: games[gameId], gameId : gameId});   
       });
     
 
     socket.on('joinGame', (gameId) => {
         console.log('User joining game', gameId);
-        if(!games[gameId]){
-          games[gameId] = {boxes : [undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,]}        
+        
+        games[gameId] = {boxes : [undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,]}        
 
-        }
+        
         var thisGame = games[gameId].boxes
-        repeatChecking(gameId, thisGame)
+        repeatChecking(gameId, thisGame, true)
 
         
 
@@ -100,6 +123,15 @@ io.on('connection', (socket) => {
               if(games[data.gameId].lastMove != data.moveType){
                 games[data.gameId].boxes[data.moveLocation] = data.moveType
                 games[data.gameId].lastMove = data.moveType
+                thisPersonMove = data.moveType
+
+                if(checkIfWon(games[data.gameId].boxes,data.moveType)){
+                  socket.emit('gameUpdate', {game: games[data.gameId], gameId: data.gameId});   
+                  socket.emit('Win')
+                  games[data.gameId].over = true
+                  
+
+                }
               }else{
                 socket.emit('NotTurn')
 

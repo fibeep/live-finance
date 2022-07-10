@@ -23,21 +23,35 @@ function makeMove(moveLocation){
 }
 
 socket.on('gameUpdate',(data) => {
-    console.log("There is a game update", data)
-    for(var i=0;i< data.boxes.length;i++){
-        if(data.boxes[i]){
-            document.getElementById(i.toString()).innerText = data.boxes[i]
+    console.log(data)
+    if(data.gameId ==document.getElementById('gameId').value){
+        console.log("There is a game update", data)
+        for(var i=0;i< data.game.boxes.length;i++){
+            if(data.game.boxes[i]){
+                document.getElementById(i.toString()).innerText = data.game.boxes[i]
+            }else{
+                document.getElementById(i.toString()).innerText = '‏‏‎ ‎'
+            }
         }
     }
+   
 });
 
 
-socket.on('ready',()=>{
-    socket.emit('getGame',document.getElementById('gameId').value)
-})
+
 socket.on('Illegal',()=>{
     alert("You cannot move there")
 })
 socket.on('NotTurn',()=>{
     alert("Its not your turn")
+})
+socket.on('Win',()=>{
+    alert("Congrats you won!")
+    location.reload()
+})
+
+socket.on('Lost',()=>{
+    alert("Sorry you lost")
+    location.reload()
+
 })

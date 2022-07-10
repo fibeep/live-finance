@@ -7,6 +7,10 @@ function joinGame(gameId){
 
 }
 
+
+function checkIfWon(gameboard){
+    
+}
 function makeMove(moveLocation){
     var gameId = document.getElementById('gameId').value
     var moveType
@@ -27,11 +31,15 @@ socket.on('gameUpdate',(data) => {
             document.getElementById(i.toString()).innerText = data.boxes[i]
         }
     }
-
-
 });
 
 
 socket.on('ready',()=>{
     socket.emit('getGame',document.getElementById('gameId').value)
+})
+socket.on('Illegal',()=>{
+    alert("You cannot move there")
+})
+socket.on('NotTurn',()=>{
+    alert("Its not your turn")
 })

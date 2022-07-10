@@ -8,9 +8,7 @@ function joinGame(gameId){
 }
 
 
-function checkIfWon(gameboard){
-    
-}
+
 function makeMove(moveLocation){
     var gameId = document.getElementById('gameId').value
     var moveType

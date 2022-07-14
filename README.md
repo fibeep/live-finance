@@ -28,3 +28,5 @@ This allows the players (and the game logic) to perform the following actions in
 - *Express*
 
 
+##### Sidenote
+The diagram can be found in the file named 'diagram.png'

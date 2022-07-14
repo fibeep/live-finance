@@ -1,7 +1,7 @@
 # Tik-Tak-Io
 ------------------
 # Description:
-> This project makes use of Socket.io in order to implement websocket tecnology
+> This project makes use of Socket.io in order to implement websocket technology
 > 2 Players can join a game of tik-tak-toe and interact in real time over the use of websockets
 
 By using websockets, it allows both players to interact simultanously over the web.

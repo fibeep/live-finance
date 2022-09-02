@@ -21,11 +21,17 @@ This allows the players (and the game logic) to perform the following actions in
 > 4) Open 2 browsers and head to your localhost:3000
 > 5) Insert the ID for the game in both browsers, and play!
 
+## To run with Docker:
+> In the terminal run the command `docker build -t dockerio`
+> Then run the command `docker run -it -p 9000:3000 dockerio`
+> In your browser, access the site by navigating to localhost:9000
+
 ## Technical Details:
 **Written Node.js**
 **Makes use of:**
 - *Socket.io*
 - *Express*
+- *Docker*
 
 
 ##### Sidenote
